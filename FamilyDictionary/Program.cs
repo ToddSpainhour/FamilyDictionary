@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
+
 
 namespace FamilyDictionary
 {
@@ -10,6 +9,7 @@ namespace FamilyDictionary
         static void Main(string[] args)
         {
             Console.WriteLine("Family Dictionary!");
+            Console.WriteLine(new string('-', 50));
 
             /* 
                 Define a Dictionary that contains information about several members of your family. 
@@ -30,54 +30,126 @@ namespace FamilyDictionary
             
             var firstNames = new List<string>();
 
-            
-
-            // family roles
-            foreach ( string role in myFamily.Keys)
-            {
-                Console.WriteLine($"is my {role} and is years old.");
-                familyRole.Add(role);
-            }
+            var familyAges = new List<string>();
 
 
-            /*
-            var source = new Dictionary<string, Dictionary<String, Object>>();
 
-                foreach (var outerEntry in source)
-                {
-                    foreach (var innerEntry in outerEntry.Value)
-                    {
-                        if(innerEntry.Key == "Department")
-                        {
-                            // do something
-                            Console.WriteLine("Key:{0} Value:{1}", innerEntry.Key, innerEntry.Value);
-                        }
-                    }
-                }
-             
-             * */
+           
 
-            //if you have a nested collection, you need 2 loops 
 
-            // first names
+
+
+
+
+
+
+            // first names and ages
             foreach (var outerEntry in myFamily)
             {
                foreach (var innerKey in outerEntry.Value)
                 {
-                    Console.WriteLine($"innerKey {innerKey}");
+                    //Console.WriteLine($"innerKey {innerKey.Value}");
+
+                    if (innerKey.Key.Contains("name"))
+                    {
+                        firstNames.Add(innerKey.Value);
+                    } 
+                    else
+                    {
+                        familyAges.Add(innerKey.Value);
+                    }
                 }
             }
+
+
+            //foreach (string x in familyRole)
+            //{
+            //    Console.WriteLine($"{x}, {firstNames[x]}")
+            //}
+
             
+
+
+
+
+            // test loops to see if lists are working
+
+
+            // family roles
+            foreach (string role in myFamily.Keys)
+            {
+                Console.WriteLine($"their role is {role}");
+                familyRole.Add(role);
+            }
 
             Console.WriteLine(new string('-', 50));
 
 
-            foreach (string person in familyRole )
-            {
-                Console.WriteLine($"This person's role is {person}");
-            }
-               
 
+
+            //names
+            foreach (string name in firstNames)
+            {
+                Console.WriteLine($"their name is {name}");
+            }
+
+            Console.WriteLine(new string('-', 50));
+
+
+
+
+            // ages
+            foreach (string age in familyAges)
+            {
+                Console.WriteLine($"Their age is {age}");
+            }
+
+            Console.WriteLine(new string('-', 50));
+
+
+
+
+            Console.WriteLine($"{firstNames[1]} is my {familyRole[1]} and is {familyAges[1]} years old");
+            //Console.WriteLine($"test: {firstNames[1]}");
+            //Console.WriteLine($"test: {familyRole[1]}");
+            //Console.WriteLine($"test: {familyAges[1]}");
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
+             * var input = "INAGX4 Agatti Island";
+                var splitted = input.Split(new[] { ' ' }, 2);
+                Console.WriteLine(splitted[0]); // INAGX4
+                Console.WriteLine(splitted[1]); 
+            */
+
+
+
+            /*
+           var source = new Dictionary<string, Dictionary<String, Object>>();
+
+               foreach (var outerEntry in source)
+               {
+                   foreach (var innerEntry in outerEntry.Value)
+                   {
+                       if(innerEntry.Key == "Department")
+                       {
+                           // do something
+                           Console.WriteLine("Key:{0} Value:{1}", innerEntry.Key, innerEntry.Value);
+                       }
+                   }
+               }
+
+            * */
 
 
 
